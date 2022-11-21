@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUIBank.Views.PinPage"             
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"             
+             xmlns:converters="clr-namespace:MAUIBank.Converters"
+             xmlns:fonts="clr-namespace:MAUIBank.Resources.Fonts.Styles"
+             Title="PinPage">
+    <ContentPage.Resources>
+        <converters:StringLengthToColorConverter x:Key="StringLengthToColorConverter"/>
+        <Style TargetType="Label">
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+         <Style TargetType="Border">
+            <Setter Property="Stroke" Value="LightGray"/>
+            <Setter Property="StrokeThickness" Value="4"/>
+            <Setter Property="BackgroundColor" Value="#000"></Setter>
+            <Setter Property="WidthRequest" Value="50"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="StrokeShape" Value="Ellipse" />
+            <!--<Setter.Value>
+                    <Ellipse/>
+                </Setter.Value>
+            </Setter>-->
+        </Style>
+        <ControlTemplate x:Key="Keyboard">
+            <Border>
+                <ContentPresenter/>
+            </Border>
+        </ControlTemplate>
+        <Style TargetType="ContentView">
+            <Setter Property="ControlTemplate" Value="{StaticResource Keyboard}"/>
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout  Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            <Image
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                WidthRequest="200"
+                HorizontalOptions="Center"/>
+            <Label Text="Your pin"/>
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="25">
+                <Border WidthRequest="30" HeightRequest="30" Background="{Binding Pin, Converter={StaticResource StringLengthToColorConverter}, ConverterParameter=1}"/>
+                <Border WidthRequest="30" HeightRequest="30" Background="{Binding Pin, Converter={StaticResource StringLengthToColorConverter}, ConverterParameter=2}"/>
+                <Border WidthRequest="30" HeightRequest="30" Background="{Binding Pin, Converter={StaticResource StringLengthToColorConverter}, ConverterParameter=3}"/>
+                <Border WidthRequest="30" HeightRequest="30" Background="{Binding Pin, Converter={StaticResource StringLengthToColorConverter}, ConverterParameter=4}"/>
+            </HorizontalStackLayout>
+            <Grid MaximumWidthRequest="300">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ContentView>
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyboardButtonClickedCommand}" CommandParameter="1"/>
+                    </ContentView.GestureRecognizers>
+                    <Label Text="1" VerticalOptions="Center"/>
+                </ContentView>
+                <ContentView Grid.Column="1">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyboardButtonClickedCommand}" CommandParameter="2"/>
+                    </ContentView.GestureRecognizers>
+                    <Label Text="2"/>
+                </ContentView>
+                <ContentView Grid.Column="2">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyboardButtonClickedCommand}" CommandParameter="3"/>
+                    </ContentView.GestureRecognizers>
+                    <Label Text="3"/>
+                </ContentView>
+                <ContentView Grid.Row="1">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyboardButtonClickedCommand}" CommandParameter="4"/>
+                    </ContentView.GestureRecognizers>
+                    <Label Text="4"/>
+                </ContentView>
+                <ContentView Grid.Row="1" Grid.Column="1">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyboardButtonClickedCommand}" CommandParameter="5"/>
+                    </ContentView.GestureRecognizers>
+                    <Label Text="5"/>
+                </ContentView>
+                <ContentView Grid.Row="1" Grid.Column="2">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyboardButtonClickedCommand}" CommandParameter="6"/>
+                    </ContentView.GestureRecognizers>
+                    <Label Text="6"/>
+                </ContentView>
+                <ContentView Grid.Row="2">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyboardButtonClickedCommand}" CommandParameter="7"/>
+                    </ContentView.GestureRecognizers>
+                    <Label Text="7"/>
+                </ContentView>
+                <ContentView Grid.Row="2" Grid.Column="1">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyboardButtonClickedCommand}" CommandParameter="8"/>
+                    </ContentView.GestureRecognizers>
+                    <Label Text="8"/>
+                </ContentView>
+                <ContentView Grid.Row="2" Grid.Column="2">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding KeyboardButtonClickedCommand}" CommandParameter="9"/>
+                    </ContentView.GestureRecognizers>
+                    <Label Text="9"/>
+                </ContentView>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
